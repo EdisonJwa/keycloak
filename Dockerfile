@@ -10,7 +10,7 @@ ADD $KEYCLOAK_DIST /tmp/keycloak/
 # The next step makes it uniform for local development and upstream built.
 # If it is a local tar archive then it is unpacked, if from remote is just downloaded.
 RUN set -eux; \
-    apt-get -y install tar zip gzip ; \
+    apt -y install tar zip gzip ; \
     cd /tmp/keycloak ; \
     tar -xvf keycloak-*.tar.gz ; \
     rm -f keycloak-*.tar.gz ; \
@@ -22,8 +22,9 @@ FROM azul/zulu-openjdk:17  AS dist-ubuntu
 
 # Install curl. May be useful in heatlcheck
 RUN set -eux; \
-    apt-get -y install curl ; \
-    apt-get clean all ; \
+    apt update ; \
+    apt -y install curl ; \
+    apt clean all ; \
     rm -rf /var/cache/apt
 
 
