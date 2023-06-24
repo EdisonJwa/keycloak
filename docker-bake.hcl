@@ -16,7 +16,7 @@ target "keycloak" {
     context = "."
     dockerfile = "Dockerfile"
     args = {
-        DIST = "amazonlinux"
+        DIST = "ubuntu"
         KEYCLOAK_VERSION = "${VERSION}"
     }
     tags = ["${TAG}"]
