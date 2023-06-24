@@ -10,6 +10,7 @@ ADD $KEYCLOAK_DIST /tmp/keycloak/
 # The next step makes it uniform for local development and upstream built.
 # If it is a local tar archive then it is unpacked, if from remote is just downloaded.
 RUN set -eux; \
+    apt update ; \
     apt -y install tar zip gzip ; \
     cd /tmp/keycloak ; \
     tar -xvf keycloak-*.tar.gz ; \
