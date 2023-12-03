@@ -48,7 +48,7 @@ jobs:
                     cat "${{ steps.keycloak.outputs.bake-file }}"
                     docker buildx bake  -f docker-bake.hcl -f "${{ steps.keycloak.outputs.bake-file }}" --print
             -   name: Bake keycloak and push
-                uses: docker/bake-action@v2
+                uses: docker/bake-action@v4
                 if: ${{ github.event_name != 'pull_request' }}
                 env:
                     VERSION: "${{ inputs.version }}"
