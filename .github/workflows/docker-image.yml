@@ -23,15 +23,15 @@ jobs:
               with:
                   version: v0.9.1
             -   name: Login to docker ghcr.io registry
-                uses: docker/login-action@v2
+                uses: docker/login-action@v3
                 with:
-                    registry: ghcr.io
-                    username: USERNAME
-                    password: ${{ secrets.GHCR_TOKEN }}
-            -
-                name: Docker keycloak  meta
+                  registry: ghcr.io
+                  username: ${{ github.actor }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
+                  
+            -   name: Docker keycloak  meta
                 id: keycloak
-                uses: docker/metadata-action@v4
+                uses: docker/metadata-action@v5
                 with:
                     images: |
                         ghcr.io/edisonjwa/keycloak
@@ -39,6 +39,7 @@ jobs:
                         org.opencontainers.image.description=Open Source Identity and Access Management
                         org.opencontainers.image.title=Keycloak
                         org.opencontainers.image.version=${{ inputs.version }}
+                        
             -   name: Print the  build options without build
                 env:
                     VERSION: "${{ inputs.version }}"
